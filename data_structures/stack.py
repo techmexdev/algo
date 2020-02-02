@@ -1,44 +1,46 @@
-class Stack:
-    def __init__(self):
-        pass
+from linked_list import LinkedList
+
+class ArrayStack:
+    top = 0
+    def __init__(self, max_size):
+        self.max_size = max_size
+        self.items = [None for x in range(max_size)]
 
     def push(self, item):
-        pass
-    def pop(self):
-        pass
-    def peek(self):
-        pass
-    def isEmpty(self):
-        pass
-
-class ArrayStack(Stack):
-    def __init__(self):
-        self.items = []
-
-    def push(self, item):
-        self.items.append(item)
+        if self.top == self.max_size:
+            raise Exception('stack overflow')
+        else:
+            self.items[self.top] = item
+            self.top += 1
 
     def pop(self):
-        return self.items.pop() if not self.isEmpty() else None
+        if self.top == 0:
+            raise Exception('min number of items reached')
+        else:
+            self.items[self.top] = None
+            self.top -= 1
 
     def peek(self):
-        if len(self.items) > 0:
-            return self.items[len(self.items)-1]
+        if self.top > 0:
+            return self.items[self.top]
         else:
             return None
 
     def isEmpty(self):
-        return len(self.items) == 0
+        return self.top == 0
 
-class LinkedListStack(Stack):
-    def __init__(self):
-        pass
-
+class LinkedListStack(LinkedList):
     def push(self, item):
-        pass
+        self.append_node_right(item)
+
     def pop(self):
-        pass
+        return self.delete_node_right(item)
+        
     def peek(self):
-        pass
+        current_node = self.head
+        while current_node.next != None:
+            current_node = current_node.next
+        return current_node
+
     def isEmpty(self):
-        pass
+        return self.head == None

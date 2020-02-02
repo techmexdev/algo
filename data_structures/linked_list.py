@@ -32,7 +32,9 @@ class LinkedList:
             current_node = self.head
             while current_node.next != None:
                 current_node = current_node.next
+            temp = current_node.next
             current_node.next = None
+            return temp
 
     def delete_node_left(self):
         if self.head == None:
@@ -41,6 +43,7 @@ class LinkedList:
             temp = self.head
             self.head = temp.next
             temp.next = None
+            return temp
 
     def insert_node(self, position, data):
         if position == 0:
@@ -76,3 +79,4 @@ class LinkedList:
             temp = current_node.next
             current_node.next = temp.next
             temp.next = None
+            return temp
